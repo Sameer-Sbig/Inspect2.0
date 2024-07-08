@@ -102,9 +102,9 @@ const Sidebar = () => {
                     </li> */}
 
 
-                    <li><Notes />Registration</li>
+                    <li ><Notes />Registration</li>
                     <li><Notes />Search</li>
-                    <li><Notes />Manage Survey</li>
+                    <li onClick={() => {handleMenuItemClick('manageSurvey')}}><Notes />Manage Survey</li>
                 </ul>
             </div>
         </>

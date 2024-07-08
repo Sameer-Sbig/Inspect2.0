@@ -103,21 +103,12 @@ const Dashboard = () => {
 
   return (
     <>
-    <div>
-      
-      <div  style={{
-        display:'flex',
-        // flexDirection:'row'
-      }}>
-      <div>
-      <Sidebar></Sidebar>
-
-      </div>
+    
       <div className={classes.MainBody}>
       <CustomTable page={page} setPage={setPage}  columns={columns} data={data} />
 
-      </div>
-      </div>
+      
+      
       
       </div>
     </>
