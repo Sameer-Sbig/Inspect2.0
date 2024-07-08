@@ -20,6 +20,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import ReplayIcon from "@mui/icons-material/Replay";
 import userCredentials from "../data/Users";
+import { useNavigate } from "react-router-dom";
 
 const LoginPageMain = () => {
   const adminUserName = useRef("");
@@ -32,8 +33,7 @@ const LoginPageMain = () => {
   const [errorText, setErrorText] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
-
-
+  const navigate = useNavigate();
 
   // user login can be handled from here
   // const handleLogin = (e) => {
@@ -42,7 +42,10 @@ const LoginPageMain = () => {
   //   if( userCredentials.hasOwnProperty(username) && userCredentials[username] === password ){}
   // }
 
-
+  const handleLogin = (e) => {
+    e.preventDefault();
+    navigate("/dashboard");
+  };
 
   const generateRandomChar = (min, max) =>
     String.fromCharCode(Math.floor(Math.random() * (max - min + 1) + min));
@@ -96,8 +99,6 @@ const LoginPageMain = () => {
   const handleUserInputChange = (e) => {
     setUserInput(e.target.value);
   };
-
-
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -158,32 +159,33 @@ const LoginPageMain = () => {
               />
             </FormControl>
 
-                <div className={classes.canvasCover}>
-              
-                <canvas ref={canvasRef} className={classes.loginInput} height='50px'></canvas>
-                <div
-                  className={classes.reloadIcon2}
-                  onClick={() =>
-                    initializeCaptcha(canvasRef.current.getContext("2d"))
-                  }
-                >
-                  <IconButton aria-label="reload" size="large">
-                    <ReplayIcon fontSize="inherit" />
-                  </IconButton>
-                </div>
-
-                </div>
-              
-              <TextField
-                type="text"
-                label="Enter the Text"
-                color="secondary"
-                placeholder="Image Text"
-                value={userInput}
-                onChange={handleUserInputChange}
+            <div className={classes.canvasCover}>
+              <canvas
+                ref={canvasRef}
                 className={classes.loginInput}
-              ></TextField>
-            
+                height="50px"
+              ></canvas>
+              <div
+                className={classes.reloadIcon2}
+                onClick={() =>
+                  initializeCaptcha(canvasRef.current.getContext("2d"))
+                }
+              >
+                <IconButton aria-label="reload" size="large">
+                  <ReplayIcon fontSize="inherit" />
+                </IconButton>
+              </div>
+            </div>
+
+            <TextField
+              type="text"
+              label="Enter the Text"
+              color="secondary"
+              placeholder="Image Text"
+              value={userInput}
+              onChange={handleUserInputChange}
+              className={classes.loginInput}
+            ></TextField>
 
             <Button
               onClick={handleLogin}
