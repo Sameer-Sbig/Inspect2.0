@@ -104,6 +104,8 @@ import Sidebar from "./sidebar/Sidebar";
 
 import "./App.css";
 import ManageSurvey from "./manageSurvey/ManageSurvey";
+import ManageSurveyMain from "./manageSurvey/ManageSurveyMain";
+import Report from "./report/Report";
 
 // Context to manage authentication state
 export const AuthContext = createContext();
@@ -125,7 +127,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<LoginPageWrapper />} />
           <Route path="/dashboard" element={<PrivateRoute component={Dashboard} />} />
-          <Route path="/dashboard/manageSurvey" element={<PrivateRoute component={ManageSurvey} />} />
+          {/* <Route path="/manageSurvey" element={<PrivateRoute component={ManageSurveyMain} />} /> */}
+          <Route path="/report" element={<PrivateRoute component={Report}></PrivateRoute>}></Route>
         </Routes>
       
     </AuthContext.Provider>

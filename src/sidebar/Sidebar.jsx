@@ -1,7 +1,7 @@
 
 import { Close, FormatAlignJustify, Notes } from "@mui/icons-material";
 import classes from "./Sidebar.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -11,10 +11,13 @@ import MenuItem from '@mui/material/MenuItem';
 
 import Menu from '@mui/material/Menu';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { AuthContext } from "../App";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Sidebar = () => {
     const [sidebarClosed, setSidebarclosed] = useState(false);
-    // const [age, setAge] = useState('');
+    // const [age, setAge] = useState('')
+    const authContext = useContext(AuthContext);
     const navigate = useNavigate();
     // const handleChange = (event) => {
     //     setAge(event.target.value);
@@ -100,11 +103,15 @@ const Sidebar = () => {
                         </Menu>
 
                     </li> */}
+                   
 
 
-                    <li ><Notes />Registration</li>
-                    <li><Notes />Search</li>
-                    <li onClick={() => {handleMenuItemClick('manageSurvey')}}><Notes />Manage Survey</li>
+                    <li onClick={() => {handleMenuItemClick('/dashboard')}} ><Notes />Dashboard</li>
+                    <li  onClick={() => {handleMenuItemClick('/report')}}><Notes />Report</li>
+                    <li  onClick={() => {
+                        authContext.logout();
+                    }}><LogoutIcon />Logout</li>
+                    {/* <li onClick={() => {handleMenuItemClick('/manageSurvey')}}><Notes />Manage Survey</li> */}
                 </ul>
             </div>
         </>
