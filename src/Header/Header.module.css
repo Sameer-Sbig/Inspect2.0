@@ -10,3 +10,10 @@
 .header img {
     height: 70px;
 }
+
+
+@media(max-width:480px){
+    .header{
+        width: 100%;
+    }
+}
